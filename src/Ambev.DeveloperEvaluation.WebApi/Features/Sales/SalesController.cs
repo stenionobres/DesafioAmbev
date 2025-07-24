@@ -2,6 +2,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Ambev.DeveloperEvaluation.WebApi.Common;
+using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
@@ -44,11 +45,14 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
             if (!validationResult.IsValid)
                 return BadRequest(validationResult.Errors);
 
+            var command = _mapper.Map<CreateSaleCommand>(request);
+            var response = await _mediator.Send(command, cancellationToken);
+
             return Created(string.Empty, new ApiResponseWithData<CreateSaleResponse>
             {
                 Success = true,
                 Message = "Sale created successfully",
-                Data = _mapper.Map<CreateSaleResponse>(null)
+                Data = _mapper.Map<CreateSaleResponse>(response)
             });
         }
     }
