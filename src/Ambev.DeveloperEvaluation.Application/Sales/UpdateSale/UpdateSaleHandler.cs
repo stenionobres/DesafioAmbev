@@ -14,16 +14,19 @@ public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleRe
 {
     private readonly ISaleRepository _saleRepository;
     private readonly IMapper _mapper;
+    private readonly IMediator _mediator;
 
     /// <summary>
     /// Initializes a new instance of UpdateSaleHandler
     /// </summary>
     /// <param name="saleRepository">The user repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    public UpdateSaleHandler(ISaleRepository saleRepository, IMapper mapper)
+    /// <param name="mediator">The Mediator instance</param>
+    public UpdateSaleHandler(ISaleRepository saleRepository, IMapper mapper, IMediator mediator)
     {
         _saleRepository = saleRepository;
         _mapper = mapper;
+        _mediator = mediator;
     }
 
     public async Task<UpdateSaleResult> Handle(UpdateSaleCommand command, CancellationToken cancellationToken)
@@ -48,6 +51,8 @@ public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleRe
 
         var updatedSale = await _saleRepository.UpdateAsync(sale, cancellationToken);
         var result = _mapper.Map<UpdateSaleResult>(updatedSale);
+
+        await _mediator.Publish(new UpdateSaleEvent(result.Id));
 
         return result;
     }
