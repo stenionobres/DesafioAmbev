@@ -18,10 +18,18 @@ public interface ISaleRepository
     /// <summary>
     /// Retrieves a sale by their unique identifier
     /// </summary>
-    /// <param name="id">The unique identifier of the user</param>
+    /// <param name="id">The unique identifier of the sale</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The sale if found, null otherwise</returns>
     Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Updates a new sale in the repository
+    /// </summary>
+    /// <param name="sale">The sale to update</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The updated sale</returns>
+    Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Deletes a sale from the repository
