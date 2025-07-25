@@ -28,7 +28,7 @@ public class DeleteSaleHandler : IRequestHandler<DeleteSaleCommand, DeleteSaleRe
     /// <returns>The result of the delete operation</returns>
     public async Task<DeleteSaleResult> Handle(DeleteSaleCommand command, CancellationToken cancellationToken)
     {
-        var validator = new DeleteSaleValidator();
+        var validator = new DeleteSaleCommandValidator();
         var validationResult = await validator.ValidateAsync(command, cancellationToken);
 
         if (!validationResult.IsValid)
