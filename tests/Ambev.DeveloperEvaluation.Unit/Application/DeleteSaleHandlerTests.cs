@@ -1,12 +1,9 @@
-﻿
-using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
-using Ambev.DeveloperEvaluation.Application.Sales.DeleteSale;
-using Ambev.DeveloperEvaluation.Domain.Entities;
+﻿using Xunit;
+using NSubstitute;
+using FluentAssertions;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.Unit.Application.TestData;
-using FluentAssertions;
-using NSubstitute;
-using Xunit;
+using Ambev.DeveloperEvaluation.Application.Sales.DeleteSale;
 
 namespace Ambev.DeveloperEvaluation.Unit.Application;
 
