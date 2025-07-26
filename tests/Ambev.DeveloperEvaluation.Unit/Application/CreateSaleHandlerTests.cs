@@ -21,7 +21,7 @@ public class CreateSaleHandlerTests
     private readonly IMediator _mediator;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="CreateUserHandlerTests"/> class.
+    /// Initializes a new instance of the <see cref="CreateSaleHandlerTests"/> class.
     /// Sets up the test dependencies and creates fake data generators.
     /// </summary>
     public CreateSaleHandlerTests()
@@ -87,7 +87,7 @@ public class CreateSaleHandlerTests
     /// <summary>
     /// Tests that an invalid sale creation request throws a validation exception.
     /// </summary>
-    [Fact(DisplayName = "Given invalid sale data When creating user Then throws validation exception")]
+    [Fact(DisplayName = "Given invalid sale data When creating sale Then throws validation exception")]
     public async Task Handle_InvalidRequest_ThrowsValidationException()
     {
         // Given
