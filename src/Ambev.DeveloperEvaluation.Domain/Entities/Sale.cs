@@ -91,4 +91,9 @@ public class Sale : BaseEntity
             Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
         };
     }
+
+    /// <summary>
+    /// Property that determines whether the sale is canceled or not.
+    /// </summary>
+    public bool IsCanceled => SaleStatus.Cancelled.Equals(Status);
 }

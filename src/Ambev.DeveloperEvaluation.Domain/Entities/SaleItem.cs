@@ -59,5 +59,10 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         {
             CreatedAt = DateTime.UtcNow;
         }
+
+        /// <summary>
+        /// Property that determines whether the sale item is canceled or not.
+        /// </summary>
+        public bool IsCanceled => SaleStatus.Cancelled.Equals(Status);
     }
 }
