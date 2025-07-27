@@ -29,7 +29,7 @@ public static class CreateSaleHandlerTestData
     /// </summary>
     private static readonly Faker<CreateSaleItemCommand> SaleItemFaker = new Faker<CreateSaleItemCommand>()
         .RuleFor(i => i.ProductId, f => f.Random.Guid())
-        .RuleFor(i => i.Quantity, f => f.Random.Int(1, 30))
+        .RuleFor(i => i.Quantity, f => f.Random.Int(1, 15))
         .RuleFor(i => i.UnitPrice, f => f.Random.Decimal(25.15m, 50.70m))
         .RuleFor(i => i.Amount, f => f.Random.Decimal(25.15m, 50.70m))
         .RuleFor(i => i.Discount, f => f.Random.Decimal(0m, 15.50m))

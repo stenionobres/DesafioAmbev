@@ -14,7 +14,7 @@ public class SaleValidator : AbstractValidator<Sale>
         RuleFor(sale => sale.Amount).GreaterThan(0);
         RuleFor(sale => sale.Discount).GreaterThanOrEqualTo(0);
         RuleFor(sale => sale.Status).NotNull();
-        RuleFor(sale => sale.SaleItems).NotNull().Must(x => x.Count > 0);
+        RuleFor(sale => sale.SaleItems).SetValidator(new SaleItemsValidator());
 
         RuleForEach(x => x.SaleItems).ChildRules(item =>
         {
