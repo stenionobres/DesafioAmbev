@@ -46,4 +46,50 @@ public class SaleTests
         Assert.False(result.IsValid);
         Assert.NotEmpty(result.Errors);
     }
+
+    /// <summary>
+    /// Tests that discount ten percent discount are valid.
+    /// </summary>
+    [Fact(DisplayName = "Ten percent discount should calculates")]
+    public void Given_ValidSaleDataWithSixItems_When_CalculatedIsCall_Then_ShouldDataValid()
+    {
+        // Arrange
+        var sale = SaleTestData.GenerateValidSale();
+        sale.Discount = 0;
+        sale.SaleItems = SaleTestData.GenerateValidSaleItensForDiscount(2, 3);
+
+        // Act
+        sale.Calculate();
+        var expectedAmount = 69m;
+        var expectedDiscount = 6.9m;
+        var expectedAmountWithDiscount = 62.1m;
+
+        // Assert
+        Assert.Equal(expectedAmount, sale.Amount);
+        Assert.Equal(expectedDiscount, sale.Discount);
+        Assert.Equal(expectedAmountWithDiscount, sale.AmountWithDiscount);
+    }
+
+    /// <summary>
+    /// Tests that discount twenty percent discount are valid.
+    /// </summary>
+    [Fact(DisplayName = "Twenty percent discount should calculates")]
+    public void Given_ValidSaleDataWithTwelveItems_When_CalculatedIsCall_Then_ShouldDataValid()
+    {
+        // Arrange
+        var sale = SaleTestData.GenerateValidSale();
+        sale.Discount = 0;
+        sale.SaleItems = SaleTestData.GenerateValidSaleItensForDiscount(2, 6);
+
+        // Act
+        sale.Calculate();
+        var expectedAmount = 138m;
+        var expectedDiscount = 27.6m;
+        var expectedAmountWithDiscount = 110.4m;
+
+        // Assert
+        Assert.Equal(expectedAmount, sale.Amount);
+        Assert.Equal(expectedDiscount, sale.Discount);
+        Assert.Equal(expectedAmountWithDiscount, sale.AmountWithDiscount);
+    }
 }

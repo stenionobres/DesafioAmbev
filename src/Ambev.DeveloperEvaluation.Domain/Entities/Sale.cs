@@ -2,6 +2,7 @@
 using Ambev.DeveloperEvaluation.Domain.Common;
 using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.Domain.Validation;
+using Ambev.DeveloperEvaluation.Domain.BusinessRules;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities;
 
@@ -66,9 +67,12 @@ public class Sale : BaseEntity
     /// </summary>
     public List<SaleItem> SaleItems { get; set; } = new List<SaleItem>();
 
+    private readonly DiscountCalculator _discountCalculator;
+
     public Sale()
     {
         CreatedAt = DateTime.UtcNow;
+        _discountCalculator = new DiscountCalculator();
     }
 
     /// <summary>
@@ -96,4 +100,28 @@ public class Sale : BaseEntity
     /// Property that determines whether the sale is canceled or not.
     /// </summary>
     public bool IsCanceled => SaleStatus.Cancelled.Equals(Status);
+
+    /// <summary>
+    /// Method that calculates the sale discount and sale itens discount
+    /// based in the follow rules:
+    /// 4+ items: 10% discount
+    /// 10-20 items: 20% discount
+    /// </summary>
+    public void Calculate()
+    {
+        Amount = SaleItems.Sum(i => i.Amount);
+
+        var groupedSaleItems = SaleItems.GroupBy(i => i.ProductId)
+                                        .Select(g => g.ToList()) 
+                                        .ToList();
+
+        foreach (var group in groupedSaleItems)
+        {
+            var discount = _discountCalculator.Calculate(group);
+
+            Discount += discount;
+        }
+
+        AmountWithDiscount = Amount - Discount;
+    }
 }
