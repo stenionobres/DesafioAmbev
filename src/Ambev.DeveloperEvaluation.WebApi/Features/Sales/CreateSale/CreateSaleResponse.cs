@@ -30,12 +30,17 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale
         /// <summary>
         /// Gets or sets the total amount of the sale
         /// </summary>
-        public decimal SaleAmount { get; set; }
+        public decimal Amount { get; set; }
 
         /// <summary>
         /// Gets or sets the discount of the sale
         /// </summary>
         public decimal Discount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Amount applying the discount of the sale
+        /// </summary>
+        public decimal AmountWithDiscount { get; set; }
 
         /// <summary>
         /// The current status of the sale

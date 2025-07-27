@@ -10,8 +10,11 @@ public class SaleItemsValidator : AbstractValidator<IEnumerable<SaleItem>>
     public SaleItemsValidator()
     {
         RuleFor(item => item).NotNull()
+                             .WithMessage("The sale item should be informed.")
                              .Must(x => x.Count() > 0)
-                             .Must(BeValidQuantity);
+                             .WithMessage("The sale item should be informed.")
+                             .Must(BeValidQuantity)
+                             .WithMessage($"A maximum of {MaxItems} items of the same product are allowed.");
     }
 
     private bool BeValidQuantity(IEnumerable<SaleItem> saleItems)

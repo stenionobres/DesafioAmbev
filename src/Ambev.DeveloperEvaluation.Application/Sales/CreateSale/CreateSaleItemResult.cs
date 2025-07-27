@@ -1,12 +1,17 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Enums;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale;
+namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 
 /// <summary>
-/// API response model for UpdateItemSale operation
+/// Response model item for CreateSale operation
 /// </summary>
-public class UpdateSaleItemResponse
+public class CreateSaleItemResult
 {
+    /// <summary>
+    /// Gets or sets the sale item id.
+    /// </summary>
+    public Guid Id { get; set; }
+
     /// <summary>
     /// Gets or sets the product id of item.
     /// </summary>
@@ -28,7 +33,7 @@ public class UpdateSaleItemResponse
     public decimal Amount { get; set; }
 
     /// <summary>
-    /// Gets or sets the discount of the item
+    /// Gets or sets the discount of the sale
     /// </summary>
     public decimal Discount { get; set; }
 
