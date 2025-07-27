@@ -46,6 +46,7 @@ public static class SaleTestData
         .RuleFor(i => i.ProductId, f => productId)
         .RuleFor(i => i.UnitPrice, f => 11.50m)
         .RuleFor(i => i.Quantity, f => quantityProduct)
+        .RuleFor(i => i.Amount, f => 11.50m * quantityProduct)
         .RuleFor(i => i.Status, f => SaleStatus.NotCancelled)
         .RuleFor(s => s.CreatedAt, f => f.Date.Between(new DateTime(2025, 7, 1), new DateTime(2025, 7, 15)));
 

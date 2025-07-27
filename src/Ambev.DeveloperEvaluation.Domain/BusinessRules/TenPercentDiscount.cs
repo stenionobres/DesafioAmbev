@@ -14,7 +14,15 @@ public class TenPercentDiscount : IDiscount
 
     public decimal Calculate(IEnumerable<SaleItem> itens)
     {
-        var amount = itens.Sum(i => i.UnitPrice * i.Quantity);
-        return amount * Discount;
+        var discount = 0m;
+
+        foreach (var item in itens)
+        {
+            item.Discount = item.UnitPrice * item.Quantity * Discount;
+            item.AmountWithDiscount = item.Amount - item.Discount;
+            discount += item.Discount;
+        }
+
+        return discount;
     }
 }
