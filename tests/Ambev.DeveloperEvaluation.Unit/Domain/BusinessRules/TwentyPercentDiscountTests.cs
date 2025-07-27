@@ -1,6 +1,6 @@
-﻿using Ambev.DeveloperEvaluation.Domain.BusinessRules;
+﻿using Xunit;
+using Ambev.DeveloperEvaluation.Domain.BusinessRules;
 using Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData;
-using Xunit;
 
 namespace Ambev.DeveloperEvaluation.Unit.Domain.BusinessRules;
 

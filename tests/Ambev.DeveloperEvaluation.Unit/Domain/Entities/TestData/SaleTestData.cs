@@ -39,6 +39,17 @@ public static class SaleTestData
         .RuleFor(s => s.CreatedAt, f => f.Date.Between(new DateTime(2025, 7, 1), new DateTime(2025, 7, 15)));
 
     /// <summary>
+    /// Configures the Faker to generate valid SaleItem entities for discount calculator.
+    /// </summary>
+    private static Faker<SaleItem> SaleItemDiscountFaker(Guid saleId, Guid productId, int quantityProduct) => new Faker<SaleItem>()
+        .RuleFor(i => i.SaleId, f => saleId)
+        .RuleFor(i => i.ProductId, f => productId)
+        .RuleFor(i => i.UnitPrice, f => 11.50m)
+        .RuleFor(i => i.Quantity, f => quantityProduct)
+        .RuleFor(i => i.Status, f => SaleStatus.NotCancelled)
+        .RuleFor(s => s.CreatedAt, f => f.Date.Between(new DateTime(2025, 7, 1), new DateTime(2025, 7, 15)));
+
+    /// <summary>
     /// Generates a valid Sale entity with randomized data.
     /// The generated sale will have all properties populated with valid values
     /// that meet the system's validation requirements.
@@ -47,5 +58,13 @@ public static class SaleTestData
     public static Sale GenerateValidSale()
     {
         return SaleFaker.Generate();
+    }
+
+    public static List<SaleItem> GenerateValidSaleItensForDiscount(int quantityItens, int quantityProduct)
+    {
+        var saleId = Guid.NewGuid();
+        var productId = Guid.NewGuid();
+
+        return SaleItemDiscountFaker(saleId, productId, quantityProduct).Generate(quantityItens);
     }
 }
