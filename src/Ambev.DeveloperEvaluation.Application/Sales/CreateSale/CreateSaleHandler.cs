@@ -44,6 +44,7 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
         if (!validationSaleResult.IsValid)
             throw new ValidationException(validationSaleResult.Errors);
 
+        sale.Calculate();
         var createdSale = await _saleRepository.CreateAsync(sale, cancellationToken);
         var result = _mapper.Map<CreateSaleResult>(createdSale);
 

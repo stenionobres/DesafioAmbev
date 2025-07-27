@@ -18,7 +18,8 @@ public class TwentyPercentDiscount : IDiscount
 
         foreach (var item in itens)
         {
-            item.Discount = item.UnitPrice * item.Quantity * Discount;
+            item.Amount = item.UnitPrice * item.Quantity;
+            item.Discount = item.Amount * Discount;
             item.AmountWithDiscount = item.Amount - item.Discount;
             discount += item.Discount;
         }

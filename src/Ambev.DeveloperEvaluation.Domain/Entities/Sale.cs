@@ -109,9 +109,12 @@ public class Sale : BaseEntity
     /// </summary>
     public void Calculate()
     {
-        Amount = SaleItems.Sum(i => i.Amount);
+        SaleItems.ForEach(i => i.AmountWithDiscount = i.Amount);
+        Amount = SaleItems.Where(i => SaleStatus.NotCancelled.Equals(i.Status))
+                          .Sum(i => i.UnitPrice * i.Quantity);
 
-        var groupedSaleItems = SaleItems.GroupBy(i => i.ProductId)
+        var groupedSaleItems = SaleItems.Where(i => SaleStatus.NotCancelled.Equals(i.Status))
+                                        .GroupBy(i => i.ProductId)
                                         .Select(g => g.ToList()) 
                                         .ToList();
 

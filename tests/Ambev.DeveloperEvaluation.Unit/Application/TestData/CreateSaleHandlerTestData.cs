@@ -21,7 +21,7 @@ public static class CreateSaleHandlerTestData
         .RuleFor(s => s.BranchId, f => f.Random.Guid())
         .RuleFor(s => s.Amount, f => f.Random.Decimal(325.15m, 1250.70m))
         .RuleFor(s => s.Discount, f => f.Random.Decimal(0m, 15.50m))
-        .RuleFor(s => s.Status, f => f.PickRandom(SaleStatus.NotCancelled, SaleStatus.Cancelled))
+        .RuleFor(s => s.Status, SaleStatus.NotCancelled)
         .RuleFor(s => s.SaleItems, f => SaleItemFaker!.Generate(f.Random.Int(1, 5)));
 
     /// <summary>

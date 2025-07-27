@@ -49,6 +49,7 @@ public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleRe
         
         sale.UpdatedAt = updateDate;
         sale.SaleItems.ForEach(x => x.UpdatedAt = updateDate);
+        sale.Calculate();
 
         var updatedSale = await _saleRepository.UpdateAsync(sale, cancellationToken);
         var result = _mapper.Map<UpdateSaleResult>(updatedSale);

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Ambev.DeveloperEvaluation.Domain.Enums;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 
@@ -32,7 +33,7 @@ public class CreateSaleCommandValidator : AbstractValidator<CreateSaleCommand>
         RuleFor(sale => sale.BranchId).NotNull().NotEmpty();
         RuleFor(sale => sale.Amount).GreaterThan(0);
         RuleFor(sale => sale.Discount).GreaterThanOrEqualTo(0);
-        RuleFor(sale => sale.Status).NotNull();
+        RuleFor(sale => sale.Status).NotNull().Equal(SaleStatus.NotCancelled);
         RuleFor(sale => sale.SaleItems).NotNull().Must(x => x.Count > 0);
 
         RuleForEach(x => x.SaleItems).ChildRules(item =>
