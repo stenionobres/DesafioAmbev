@@ -33,15 +33,15 @@ Abaixo é apresentado uma imagem do relatório. O projeto `Ambev.DeveloperEvalua
 
 Modelo de classes criado para representar os conceitos de Venda e seus itens, além de uma calculadora de descontos que implementa as regras de descontos usando o princípio Open/Closed do SOLID.
 
-				    +---------------+
-				    |   IDiscount   |
-				    +---------------+
-						    ^
-						    |
-			    +------------------------+
-			    |                        |
+		     +---------------+
+		     |   IDiscount   |
+		     +---------------+
+			      ^
+			      |
+		+------------------------+
+		|                        |
     +-----------------------+   +-----------------------+
-    | TenPercentDiscount 	|   | TwentyPercentDiscount |
+    | TenPercentDiscount    |   | TwentyPercentDiscount |
     +-----------------------+   +-----------------------+
                 |                        |
                 +------------------------+
@@ -52,9 +52,9 @@ Modelo de classes criado para representar os conceitos de Venda e seus itens, al
                     +--------------------+
                             ^
                             |
-                        +-----------+			+-------------+
+                        +-----------+		+-------------+
                         |   Sale    | ------->	|  SaleItem   |
-                        +-----------+			+-------------+
+                        +-----------+		+-------------+
 
 * **Sale**: classe que representa a entidade Venda;
 * **SaleItem**: classe que representa os itens da Venda;
