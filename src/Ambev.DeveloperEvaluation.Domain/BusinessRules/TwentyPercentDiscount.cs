@@ -2,6 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.Domain.BusinessRules;
 
+/// <summary>
+/// Rules for 20% discount
+/// </summary>
 public class TwentyPercentDiscount : IDiscount
 {
     private const decimal Discount = 0.20m;

@@ -2,6 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.Domain.BusinessRules;
 
+/// <summary>
+/// Classes that apply discount rules
+/// </summary>
 public class DiscountCalculator
 {
     private readonly List<IDiscount> _rules;
