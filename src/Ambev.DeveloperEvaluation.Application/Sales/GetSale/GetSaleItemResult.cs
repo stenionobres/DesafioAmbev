@@ -38,6 +38,11 @@ public class GetSaleItemResult
     public decimal Discount { get; set; }
 
     /// <summary>
+    /// Gets or sets the Amount applying the discount of the sale item
+    /// </summary>
+    public decimal AmountWithDiscount { get; set; }
+
+    /// <summary>
     /// The current status of the item
     /// </summary>
     public SaleStatus Status { get; set; }
