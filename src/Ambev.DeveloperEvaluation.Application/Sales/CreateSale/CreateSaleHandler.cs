@@ -4,6 +4,7 @@ using FluentValidation;
 using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Validation;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Ambev.DeveloperEvaluation.Application.Sales.CancelSale;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 
@@ -49,6 +50,12 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
         var result = _mapper.Map<CreateSaleResult>(createdSale);
 
         await _mediator.Publish(new CreateSaleEvent(result.Id));
+
+        foreach (var saleItem in sale.SaleItems)
+        {
+            if (saleItem.IsCanceled)
+                await _mediator.Publish(new CancelSaleItemEvent(result.Id, saleItem.Id));
+        }
 
         return result;
     }
